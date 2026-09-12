@@ -55,7 +55,7 @@ Then open the app in a browser at the server's address on port 8080 (e.g. `http:
 ### Project Documentation
 For Software:
 
-# Screenshots (Add at least 3)
+# Screenshots 
 ![Live HUD](./assets/screenshot-live-hud.png)
 <img width="947" height="406" alt="Screenshot 2" src="https://github.com/user-attachments/assets/ecac055b-fab8-4d98-a207-5aac7ae4dc9d" />
 *The live view: webcam feed, trust meter, forgiveness counter, and a running log of moments she noticed you looking away.*
