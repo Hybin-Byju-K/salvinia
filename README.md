@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/fd387a92-7ae6-4229-9b74-6884091e23db
+
 <img width="1280" height="640" alt="git (1)" src="https://github.com/user-attachments/assets/8920b256-2ba8-4988-b824-5351134eb4bd" />
 
 
@@ -89,7 +93,10 @@ For Hardware:
 
 ### Project Demo
 # Video
-[Add your demo video link here]
+[Add your demo video link her<img width="947" height="406" alt="Screenshot 2" src="https://github.com/user-attachments/assets/ecac055b-fab8-4d98-a207-5aac7ae4dc9d" />
+<img width="950" height="416" alt="Screenshot 1" src="https://github.com/user-attachments/assets/d896a411-696d-4f5a-8f62-926058516d81" />
+![Uploading diagram-loop.svg…]()
+e]
 *Explain what the video demonstrates*
 
 # Additional Demos
