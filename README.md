@@ -1,46 +1,106 @@
-# The Toxic Validation Loop
+<img width="1280" height="640" alt="git (1)" src="https://github.com/user-attachments/assets/8920b256-2ba8-4988-b824-5351134eb4bd" />
 
-A client/server web app hackathon project that simulates a "toxic, dramatically jealous AI girlfriend". The browser client tracks your facial expressions in real-time and streams your state over WebSockets to a Node/Express server. The server prompts a local LLM (Ollama) to generate dynamically escalating, jealous responses and streams text and TTS audio back to your browser.
 
-## Features
 
-- **Real-Time Face & Expression Tracking:** Uses `face-api.js` directly in the browser to detect if you are looking at the screen and if you are smiling.
-- **Dynamic Trust Meter:** A visible HUD bar that slowly drains when you stop smiling or look away, and quickly recovers when you smile.
-- **Escalating Guilt Tiers:** The longer you go without smiling or looking at the camera, the more jealous and toxic the AI's responses become.
-- **Guilt Receipts & Evidence:** Logs timestamps whenever you look away, and captures screenshots of your face to use as "evidence" against you.
-- **Hostage Lockout & Make-up Tasks:** If trust hits zero, the UI locks down with an ultimatum overlay. You must type a randomly generated apology phrase (e.g., *"you're the only one"*) 3 times to be forgiven.
-- **Beforeunload Panic:** If you try to close the tab, she throws a dramatic native browser confirm dialog.
-- **Seamless Local TTS:** Audio is generated dynamically via Google TTS and proxied through the Express server to bypass browser CORS policies.
+# LOVE//LOOP 🎯
 
-## Tech Stack
 
-- **Frontend:** Vanilla HTML / CSS / JS, WebSockets
-- **Computer Vision:** `face-api.js`
-- **Backend:** Node.js, Express, `ws` (WebSockets)
-- **Local AI:** Ollama (`llama3.2:3b` or similar)
-- **Audio:** `google-tts-api`
+## Basic Details
+### Team Name: Salvinia
 
-## Getting Started
 
-1. **Start Ollama**
-   Make sure you have [Ollama](https://ollama.ai/) installed and running a local model:
-   ```bash
-   ollama run llama3.2:3b
-   ```
+### Team Members
+- Team Lead: Hybin Byju K - Sahrdaya College of Engineering and Technology
+- Member 2: Joseph T Jenny - Sahrdaya College of Engineering and Technology
 
-2. **Install Dependencies**
-   ```bash
-   npm install express ws google-tts-api
-   ```
+### Project Description
+A satirical anti-UX web app that watches you through your webcam and reacts like a co-dependent AI girlfriend — showering you with hyper-specific compliments while you smile, and spiraling into jealousy and guilt-tripping the instant you look away. The only way out of a sulking episode is typing a sincere apology and hoping she believes you.
 
-3. **Run the Server**
-   ```bash
-   node server.js
-   ```
+### The Problem (that doesn't exist)
+Every app on your phone is desperate to be pleasant, respectful of your time, and easy to walk away from. Nobody asked for that.
 
-4. **Open the Client**
-   Navigate to `http://localhost:8080` in your web browser. 
-   *(Note: You must click anywhere on the page once to allow the browser's autoplay policies to play the audio).*
+### The Solution (that nobody asked for)
+We built an AI companion that tracks your smile in real time, guilt-trips you the moment your attention wavers, and locks the entire app hostage until you grovel — with your apology graded for sincerity and, for extra flavor, some of her responses delivered in Malayalam.
 
-## Disclaimer
-This project is a humorous hackathon experiment meant to demonstrate live webcam interactions, real-time WebSocket communication, and prompt engineering with local LLMs. It is not meant to be taken seriously!
+## Technical Details
+### Technologies/Components Used
+For Software:
+- JavaScript (Node.js + browser)
+- Express, WebSocket (ws)
+- face-api.js (real-time smile/expression detection)
+- Ollama running Llama 3.2 3B (local LLM)
+- google-translate-api-x, google-tts-api (Malayalam translation & voice)
+
+For Hardware:
+- Two laptops (client + server), networked together over Tailscale
+- Webcam (on the client laptop)
+
+### Implementation
+For Software:
+# Installation
+```
+npm install
+```
+
+# Run
+```
+node server.js
+```
+Then open the app in a browser at the server's address on port 8080 (e.g. `http://<server-tailscale-ip>:8080`).
+
+### Project Documentation
+For Software:
+
+# Screenshots (Add at least 3)
+![Live HUD](./assets/screenshot-live-hud.png)
+*The live view: webcam feed, trust meter, forgiveness counter, and a running log of moments she noticed you looking away.*
+
+![Ultimatum screen](./assets/screenshot-ultimatum.png)
+*What happens when you stop smiling for too long — the app locks up and demands a typed apology before it will reset.*
+
+![Screenshot3](Add screenshot 3 here with proper name)
+*Add caption explaining what this shows*
+
+# Diagrams
+![Workflow](./assets/diagram-architecture.svg)
+*Client laptop runs the webcam and face-api.js detection in the browser; server laptop runs the WebSocket server, prompts a local Ollama model, translates the reply to Malayalam, and streams text + audio back — the two communicate over Tailscale.*
+
+![The Loop](./assets/diagram-loop.svg)
+*The state cycle behind the name: LOVING while you smile, OFFENDED the moment you stop, LOCKED after three checks with no smile (or looking away), and an apology judged for sincerity before it lets you back into LOVING — or sends you straight back to LOCKED.*
+
+For Hardware:
+
+# Schematic & Circuit
+![Circuit](Add your circuit diagram here)
+*Add caption explaining connections*
+
+![Schematic](Add your schematic diagram here)
+*Add caption explaining the schematic*
+
+# Build Photos
+![Components](Add photo of your components here)
+*List out all components shown*
+
+![Build](Add photos of build process here)
+*Explain the build steps*
+
+![Final](Add photo of final product here)
+*Explain the final build*
+
+### Project Demo
+# Video
+[Add your demo video link here]
+*Explain what the video demonstrates*
+
+# Additional Demos
+[Add any extra demo materials/links]
+
+## Team Contributions
+- Hybin Byju K: Server-side logic — WebSocket server, local LLM (Ollama) integration and prompting, Malayalam translation/TTS pipeline, Tailscale networking between the two laptops.
+- Joseph T Jenny: Client-side experience — webcam capture, face-api.js smile/expression detection, front-end UI (trust meter, ultimatum overlay, live response display).
+
+---
+Made with ❤️ at TinkerHub Useless Projects 
+
+![Static Badge](https://img.shields.io/badge/TinkerHub-24?color=%23000000&link=https%3A%2F%2Fwww.tinkerhub.org%2F)
+![Static Badge](https://img.shields.io/badge/UselessProjects--26-26?link=https%3A%2F%2Ftinkerhub.org%2Fevents%2F1M8ORET9A1%2Fuseless-projects-3.0)
