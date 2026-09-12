@@ -1,1 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toxic Girlfriend</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffcccc;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
 
+        #video-container {
+            position: relative;
+            margin-bottom: 20px;
+            border: 2px solid #ff4d4d;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        #webcam {
+            width: 640px;
+            height: 480px;
+            display: block;
+        }
+
+        #ai-response {
+            width: 80%;
+            max-width: 800px;
+            height: 200px;
+            background-color: #330000;
+            border: 1px solid #ff4d4d;
+            padding: 15px;
+            overflow-y: auto;
+            font-size: 1.2rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+
+        #ultimatum-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #ff0000;
+            z-index: 9999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        #ultimatum-input {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 1.5rem;
+            width: 400px;
+            border: none;
+            outline: none;
+        }
+
+        /* ── Trust Meter HUD ── */
+        #trust-hud {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            right: 12px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        #trust-label {
+            color: #ff4d4d;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            text-shadow: 0 0 6px #ff4d4d;
+        }
+
+        #trust-bar-track {
+            flex: 1;
+            height: 10px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255, 77, 77, 0.4);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        #trust-bar-fill {
+            height: 100%;
+            width: 100%;
+            border-radius: 6px;
+            background: linear-gradient(90deg, #ff1a1a, #ff884d);
+            box-shadow: 0 0 10px #ff4d4d88;
+            transition: width 0.8s ease, background 0.8s ease, box-shadow 0.8s ease;
+        }
+
+        #trust-pct {
+            color: #ff4d4d;
+            font-size: 0.75rem;
+            min-width: 36px;
+            text-align: right;
+            text-shadow: 0 0 6px #ff4d4d;
+        }
+
+        /* ── Guilt Receipts ── */
+        #guilt-log {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            width: 260px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .guilt-item {
+            background: rgba(20, 0, 0, 0.82);
+            border-left: 3px solid #ff2222;
+            color: #ffaaaa;
+            font-family: 'Courier New', monospace;
+            font-size: 0.7rem;
+            padding: 5px 8px;
+            border-radius: 3px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(12px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+
+        /* ── Forgiveness Counter ── */
+        #forgiven-hud {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            background: rgba(20, 0, 0, 0.82);
+            border: 1px solid #ff2222;
+            border-radius: 6px;
+            padding: 8px 14px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: #ffaaaa;
+            z-index: 100;
+            pointer-events: none;
+            text-shadow: 0 0 6px #ff000066;
+        }
+
+        #forgiven-hud span {
+            color: #ff4444;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        /* ── Evidence Panel ── */
+        #evidence-panel {
+            position: fixed;
+            bottom: 16px;
+            left: 16px;
+            background: rgba(10, 0, 0, 0.9);
+            border: 2px solid #ff2222;
+            border-radius: 6px;
+            padding: 8px;
+            z-index: 200;
+            animation: slideInEvidence 0.4s ease;
+            max-width: 180px;
+        }
+
+        @keyframes slideInEvidence {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        #evidence-label {
+            color: #ff2222;
+            font-family: 'Courier New', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 0 0 6px #ff000099;
+        }
+
+        #evidence-img {
+            width: 100%;
+            border-radius: 3px;
+            border: 1px solid #ff444444;
+            filter: grayscale(30%) contrast(1.1);
+        }
+
+        #evidence-caption {
+            color: #ff8888;
+            font-family: 'Courier New', monospace;
+            font-size: 0.6rem;
+            margin-top: 4px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="video-container">
+        <video id="webcam" autoplay muted playsinline></video>
+        <div id="trust-hud">
+            <span id="trust-label">❤ Trust</span>
+            <div id="trust-bar-track">
+                <div id="trust-bar-fill"></div>
+            </div>
+            <span id="trust-pct">100%</span>
+        </div>
+    </div>
+
+    <div id="ai-response">Connecting to your feelings...</div>
+
+    <!-- Guilt Receipts panel -->
+    <div id="guilt-log"></div>
+
+    <!-- Forgiveness Counter -->
+    <div id="forgiven-hud">💔 Times forgiven: <span id="forgiven-count">0</span></div>
+
+    <div id="ultimatum-overlay">
+        <p id="ultimatum-title">YOU STOPPED SMILING. DO YOU HATE ME?</p>
+        <p id="ultimatum-desc">Type your apology and press Enter.</p>
+        <input type="text" id="ultimatum-input" autocomplete="off" placeholder="Beg properly..." />
+    </div>
+
+    <!-- face-api.js from jsdelivr -->
+    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    <script defer src="client.js"></script>
+</body>
+</html>

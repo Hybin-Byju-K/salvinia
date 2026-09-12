@@ -1,103 +1,46 @@
-<img width="1280" height="640" alt="git (1)" src="https://github.com/user-attachments/assets/8920b256-2ba8-4988-b824-5351134eb4bd" />
+# The Toxic Validation Loop
 
+A client/server web app hackathon project that simulates a "toxic, dramatically jealous AI girlfriend". The browser client tracks your facial expressions in real-time and streams your state over WebSockets to a Node/Express server. The server prompts a local LLM (Ollama) to generate dynamically escalating, jealous responses and streams text and TTS audio back to your browser.
 
+## Features
 
-# [Project Name] 🎯
+- **Real-Time Face & Expression Tracking:** Uses `face-api.js` directly in the browser to detect if you are looking at the screen and if you are smiling.
+- **Dynamic Trust Meter:** A visible HUD bar that slowly drains when you stop smiling or look away, and quickly recovers when you smile.
+- **Escalating Guilt Tiers:** The longer you go without smiling or looking at the camera, the more jealous and toxic the AI's responses become.
+- **Guilt Receipts & Evidence:** Logs timestamps whenever you look away, and captures screenshots of your face to use as "evidence" against you.
+- **Hostage Lockout & Make-up Tasks:** If trust hits zero, the UI locks down with an ultimatum overlay. You must type a randomly generated apology phrase (e.g., *"you're the only one"*) 3 times to be forgiven.
+- **Beforeunload Panic:** If you try to close the tab, she throws a dramatic native browser confirm dialog.
+- **Seamless Local TTS:** Audio is generated dynamically via Google TTS and proxied through the Express server to bypass browser CORS policies.
 
+## Tech Stack
 
-## Basic Details
-### Team Name: [Name]
+- **Frontend:** Vanilla HTML / CSS / JS, WebSockets
+- **Computer Vision:** `face-api.js`
+- **Backend:** Node.js, Express, `ws` (WebSockets)
+- **Local AI:** Ollama (`llama3.2:3b` or similar)
+- **Audio:** `google-tts-api`
 
+## Getting Started
 
-### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+1. **Start Ollama**
+   Make sure you have [Ollama](https://ollama.ai/) installed and running a local model:
+   ```bash
+   ollama run llama3.2:3b
+   ```
 
-### Project Description
-[2-3 lines about what your project does]
+2. **Install Dependencies**
+   ```bash
+   npm install express ws google-tts-api
+   ```
 
-### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+3. **Run the Server**
+   ```bash
+   node server.js
+   ```
 
-### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+4. **Open the Client**
+   Navigate to `http://localhost:8080` in your web browser. 
+   *(Note: You must click anywhere on the page once to allow the browser's autoplay policies to play the audio).*
 
-## Technical Details
-### Technologies/Components Used
-For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
-
-For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
-
-### Implementation
-For Software:
-# Installation
-[commands]
-
-# Run
-[commands]
-
-### Project Documentation
-For Software:
-
-# Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
-
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
-
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
-
-# Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
-
-For Hardware:
-
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
-
-# Build Photos
-![Components](Add photo of your components here)
-*List out all components shown*
-
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
-
-### Project Demo
-# Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
-
-# Additional Demos
-[Add any extra demo materials/links]
-
-## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
-
----
-Made with ❤️ at TinkerHub Useless Projects 
-
-![Static Badge](https://img.shields.io/badge/TinkerHub-24?color=%23000000&link=https%3A%2F%2Fwww.tinkerhub.org%2F)
-![Static Badge](https://img.shields.io/badge/UselessProjects--26-26?link=https%3A%2F%2Ftinkerhub.org%2Fevents%2F1M8ORET9A1%2Fuseless-projects-3.0)
-
-
-
+## Disclaimer
+This project is a humorous hackathon experiment meant to demonstrate live webcam interactions, real-time WebSocket communication, and prompt engineering with local LLMs. It is not meant to be taken seriously!
