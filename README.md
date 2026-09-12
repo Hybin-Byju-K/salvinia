@@ -1,4 +1,7 @@
 
+
+
+
 <img width="1280" height="640" alt="git (1)" src="https://github.com/user-attachments/assets/8920b256-2ba8-4988-b824-5351134eb4bd" />
 
 
@@ -67,14 +70,14 @@ For Software:
 # Diagrams
 ![Workflow](./assets/diagram-architecture.svg)
 
-<img width="1360" height="840" alt="diagram-architecture" src="https://github.com/user-attachments/assets/528bb57b-0221-4c81-bdb8-58baaf4ede3a" />
+<img width="680" height="420" alt="diagram-architecture(1)" src="https://github.com/user-attachments/assets/62ed55e1-cb8a-4ebc-96fc-2b5352518fa4" />
 
 
 *Client laptop runs the webcam and face-api.js detection in the browser; server laptop runs the WebSocket server, prompts a local Ollama model, translates the reply to Malayalam, and streams text + audio back — the two communicate over Tailscale.*
 
 ![The Loop](./assets/diagram-loop.svg)
 
-<img width="1360" height="1040" alt="diagram-loop" src="https://github.com/user-attachments/assets/04fef8cb-dfab-4891-b2bf-ccce6bea9ee3" />
+<img width="680" height="520" alt="diagram-loop(1)" src="https://github.com/user-attachments/assets/7d37a2e7-d33b-44bd-b76f-7c172947a436" />
 *The state cycle behind the name: LOVING while you smile, OFFENDED the moment you stop, LOCKED after three checks with no smile (or looking away), and an apology judged for sincerity before it lets you back into LOVING — or sends you straight back to LOCKED.*
 
 For Hardware:
