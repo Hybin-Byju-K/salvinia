@@ -94,7 +94,9 @@ For Hardware:
 
 ### Project Demo
 # Video
-[Add your demo video link herhttps://github.com/user-attachments/assets/fd387a92-7ae6-4229-9b74-6884091e23db
+[Add your demo video link here
+
+https://github.com/user-attachments/assets/fd387a92-7ae6-4229-9b74-6884091e23db
 
 ![Uploading diagram-loop.svg…]()
 e]
